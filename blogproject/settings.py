@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -136,3 +137,9 @@ MEDIA_URL = '/media/'
 
 #MEDIA 파일들을 어디에 모을 건지 쓰는 곳
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#Heroku 실습 코드
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
