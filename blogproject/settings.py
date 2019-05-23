@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'py%!gbrg5_xilv8(*4sc8-p9a@ea8b
 #DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 
 # static 파일들이 현재 어디있는지 쓰는 곳
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'portfoilo', 'static')
+    os.path.join(BASE_DIR, 'portfolio', 'static')
 ]
 
 # static 파일들을 어디에 모을 건지 쓰는 곳
