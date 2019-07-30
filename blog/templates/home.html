@@ -1,16 +1,15 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
+    <br>
     <div class="container">
         <br><br>
             {% for blog in posts %} 
-            <h1>제목 : {{blog.title}}</h1>  
-            <p>날짜 : {{blog.pub_date}}</p>
-            <p>본문 미리보기 : {{blog.summary}}<a href = "{% url 'detail' blog.id %}">...more</a></p>
+            <h1>Title : {{blog.title}}</h1>  
+            <p>Date : {{blog.pub_date}}</p>
+            <p>Context : {{blog.summary}}<a href = "{% url 'detail' blog.id %}">...more</a></p>
             <br><br>
         {% endfor %}
-        <a href="{% url 'home' %}">돌아가기</a>
         <br>
         <br>
         <div class="btn-group" role="group" aria-label="Basic example" style="text-align:center">

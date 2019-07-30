@@ -80,12 +80,22 @@ WSGI_APPLICATION = 'blogproject.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
+    
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
 
+    #'default':{
+    #    'ENGINE' : 'django.db.backends.postgresql',
+    #    'NAME' : 'blog',
+    #    'USER' : 'postgres',
+    #    'PASSWORD' : 'hyjuki3077',
+    #    'HOST' : '127.0.0.1',
+    #    'PORT' : '5432',
+    #}
+    
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -139,7 +149,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #Heroku 실습 코드
-# Heroku: Update database configuration from $DATABASE_URL.
+#Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)

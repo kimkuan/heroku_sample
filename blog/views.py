@@ -33,18 +33,29 @@ def create(request): # 입력한 내용을 DB에 넣는 함수
     blog.save() # 블로그 객체에 가져온 값을 저장 
     return redirect('/blog/' + str(blog.id)) # 완료 후에 해당 url로 이동
 
-def blogpost(request):
+def blogpost(request, blog_id=None):
+    blog = Blog()
+    if blog_id:
+        blog = get_object_or_404(Blog, pk=blog_id)
+    
+    form = BlogPost(request.POST or None, instance=blog)
     # 사용자가 입력한 내용을 처리하는 기능 -> POST
-    if request.method=='POST':
-        form = BlogPost(request.POST) # 입력된 값들을 BlogPost모델 형식으로 받아옴
-        if form.is_valid:
-            post = form.save(commit = False)
-            post.pub_date=timezone.now()
-            post.save()
-            return redirect('/')
+    if request.method=='POST'and form.is_valid():
+        # form = BlogPost(request.POST) # 입력된 값들을 BlogPost모델 형식으로 받아옴
+        post = form.save(commit = False)
+        post.pub_date=timezone.now()
+        post.save()
+        return redirect('/')
 
     # 빈 페이지를 띄워주는 기능 -> GET
-    else:
-        form = BlogPost()
-        return render(request, 'new.html', {'form' : form})
-    return render(request, 'new.html')
+    #else:
+    #    form = BlogPost()
+    #    return render(request, 'new.html', {'form' : form})
+    return render(request, 'new.html', {'form' : form}) # 새로운 일정 추가
+
+# 일정을 삭제하는 함수
+def delete(request, blog_id=None): 
+    blog = get_object_or_404(Blog, pk=blog_id)
+    blog.delete()
+
+    return redirect('/')

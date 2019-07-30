@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <form method="POST" enctype='multipart/form-data' action=''>
+            {% csrf_token %}
+            <table class="form form-table" > <!--이미지가 안올라가서 옵션 추가함 -->
+                {{ form.as_table }}
+            </table>
+            <br>
+            <input class = "btn btn-dark" type="submit" value="제출하기">
+        </form>
+    </div>
+
+
+{% endblock %}
